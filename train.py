@@ -405,6 +405,9 @@ def main(args):
         "vol": VolumetricTriangulationNet
     }[config.model.name](config, device=device).to(device)
 
+    with open('model_vis.txt', 'w') as f:
+        f.write(str(model))
+
     if config.model.init_weights:
         state_dict = torch.load(config.model.checkpoint)
         for key in list(state_dict.keys()):
